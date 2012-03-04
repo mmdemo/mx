@@ -45,6 +45,16 @@ struct _MxStyleSheetValue
   const gchar *source;
 };
 
+typedef struct _MxSelector MxSelector;
+
+GType mx_selector_get_type (void) G_GNUC_CONST;
+
+struct _MxSelector
+{
+  gchar *filename;
+  guint  line;
+};
+
 #include <mx/mx-stylable.h>
 
 GType mx_style_sheet_value_get_type (void) G_GNUC_CONST;
@@ -61,8 +71,8 @@ gboolean       mx_style_sheet_add_from_data  (MxStyleSheet  *sheet,
                                               GError       **error);
 GHashTable*    mx_style_sheet_get_properties (MxStyleSheet *sheet,
                                               MxStylable   *node);
-GList *        mx_style_sheet_get_selectors (MxStyleSheet *sheet,
-                                             MxStylable   *node);
+GList*         mx_style_sheet_get_selectors (MxStyleSheet  *sheet,
+                                             MxStylable    *stylable);
 
 G_END_DECLS
 
